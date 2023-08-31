@@ -10,6 +10,8 @@ inputs:
   address:
     description: 'Nomad server address'
     required: true
+  args:
+    description: 'Additional arguments to pass to the command'
 runs:
   using: 'docker'
   image: 'Dockerfile'

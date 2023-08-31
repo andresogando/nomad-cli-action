@@ -8,9 +8,12 @@ ADDRESS=$3
 
 shift 3 # Shift the arguments to skip the command, token, and address
 
+# Retrieve additional arguments
+ADDITIONAL_ARGS=("${@}")
+
 case $COMMAND in
   "info")
-    nomad info -address=$ADDRESS -token=$TOKEN
+    nomad info -address=$ADDRESS -token=$TOKEN "${ADDITIONAL_ARGS[@]}"
     ;;
   "run")
     # Extract variables from the arguments
@@ -26,9 +29,9 @@ case $COMMAND in
           ;;
       esac
     done
-
+    
     # Run the nomad run command
-    nomad run -address=$ADDRESS -token=$TOKEN $VARIABLES "${@}"
+    nomad run -address=$ADDRESS -token=$TOKEN $VARIABLES "${ADDITIONAL_ARGS[@]}"
     ;;
   "validate")
     nomad validate -address=$ADDRESS -token=$TOKEN "${@}"
