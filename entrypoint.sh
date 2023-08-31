@@ -45,6 +45,9 @@ case $COMMAND in
   "evaluations")
     nomad evaluations -address=$ADDRESS -token=$TOKEN "${@}"
     ;;
+  "status")
+    nomad status -address=$ADDRESS -token=$TOKEN "${@}"
+    ;;
   *)
     echo "Unknown command: $COMMAND"
     exit 1
