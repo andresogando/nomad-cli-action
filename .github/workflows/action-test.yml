@@ -1,0 +1,51 @@
+name: pull-build-and-test
+on:
+  push:
+    branches: [main]
+
+jobs:
+  nomad-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Nomad Info
+        uses: andresogando/nomad-cli-action@v1.0.3
+        with:
+          command: job
+          token: b98b716d-d895-a173-60d0-3e7748f9b970
+          address: http://52.165.208.191:4646
+          args: 'status kibana'
+#   build-and-test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#         with:
+#           token: ${{ secrets.GITHUB_TOKEN }}
+#       - run: yarn add
+#           yarn build
+#           yarn test
+#       - name: Set version identifier
+#         shell: bash
+#         run: |
+#           git config --global user.email ${{ secrets.REMAIL }}
+#           git config --global user.name  ${{ secrets.RNAME }}
+#           TAG="release-$(git rev-parse --short HEAD)"
+#           git tag $TAG -a -m "$TAG"
+#           echo "VERSION_IDENTIFIER=$TAG" >> $GITHUB_ENV
+#           git push --tag
+#       - name: Build and push Docker image
+#         uses: Azure/docker-login@v1
+#         id: azure-login
+#         with:
+#           login-server: ${{ secrets.REGISTRY }}
+#           username: ${{ secrets.REGISTRY_USERNAME }}
+#           password: ${{ secrets.REGISTRY_PASSWORD }}
+#       - name: Debug Image Tag
+#         run: |
+#           echo "Constructed Image Tag: ${{ secrets.REGISTRY }}/${{ secrets.MODULE_NAME }}:${{ env.VERSION_IDENTIFIER }}"
+#       - name: Build and push Docker image
+#         run: |
+#           docker build . -t ${{ secrets.REGISTRY }}/${{ secrets.MODULE_NAME }}:${{ env.VERSION_IDENTIFIER }}
+#           docker push ${{ secrets.REGISTRY }}/${{ secrets.MODULE_NAME }}:${{ env.VERSION_IDENTIFIER }}
