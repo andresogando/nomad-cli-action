@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk --no-cache add curl bash
+RUN apk --no-cache add curl bash jq # Install jq package
 
 # Install Nomad CLI
 RUN NOMAD_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/nomad | jq -r .current_version) \
