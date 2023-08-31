@@ -11,6 +11,6 @@ RUN NOMAD_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/nomad 
 
 
 COPY entrypoint.sh /app/entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
 ENTRYPOINT ["/app/entrypoint.sh"]
