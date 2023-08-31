@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run Nomad Info
-        uses: andresogando/nomad-cli-action@v1.0.4
+        uses: andresogando/nomad-cli-action@v1.0.5
         with:
           command: job
           token: b98b716d-d895-a173-60d0-3e7748f9b970
